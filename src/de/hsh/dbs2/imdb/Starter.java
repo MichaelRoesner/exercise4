@@ -7,7 +7,7 @@ import de.hsh.dbs2.imdb.gui.SearchMovieDialogCallback;
 
 public class Starter {
 
-	/**
+	/** TestCommit
 	 * @param args
 	 * @throws Throwable 
 	 */
