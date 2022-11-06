@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PersonManager {
+	private List<String> personList;
+	private PersonFactory pf;
 
 	/**
 	 * Liefert eine Liste aller Personen, deren Name den Suchstring enthaelt.
@@ -12,8 +14,17 @@ public class PersonManager {
 	 * @throws Exception
 	 */
 	public List<String> getPersonList(String text) throws Exception {
-		// TODO
-		return new ArrayList<>();
+		boolean ok = false;
+		try {
+			personList.addAll(pf.getPersonList(text));
+			DBConnection.getConnection().commit();
+			ok = true;
+		} finally {
+			if (!ok)
+				DBConnection.getConnection().rollback();
+		}
+		
+		return personList;
 	}
 
 }
